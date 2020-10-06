@@ -2,36 +2,36 @@ import csv
 from credentials import Credentials as cr
 import os
 
+class Splitter:
 
+    def split_datas(self, nomfichier, column):
+        
+        '''
+        Break raw data into many files
+        '''
 
-def split_datas(annee, column):
-    
-    '''
-    Break raw data into many files
-    '''
+        filename = nomfichier
 
-    filename = annee
+        os.makedirs(cr.PATH, exist_ok=True)
 
-    os.makedirs(cr.PATH, exist_ok=True)
+        csv.field_size_limit(10000000)
 
-    csv.field_size_limit(10000000)
+        with open(cr.CURATED_LOCAL_PATH + filename, encoding='utf-8') as file_stream:
+            file_stream_reader = csv.DictReader(file_stream, delimiter=',')
+            open_files_references = {}
 
-    with open(cr.PATH + filename, encoding='utf-8') as file_stream:
-        file_stream_reader = csv.DictReader(file_stream, delimiter='\t')
-        open_files_references = {}
+            for row in file_stream_reader:
+                name_of_file = row[column]
 
-        for row in file_stream_reader:
-            nameoffile = row[columnwanted]
-
-            # Open a new file and write the header
-            if nameoffile not in open_files_references:
-                print (cr.CURATED_LOCAL_PATH + '{}.csv'.format(nameoffile))
-                output_file = open(cr.CURATED_LOCAL_PATH + '{}.csv'.format(nameoffile), 'w', encoding='utf-8', newline='')
-                dictionary_writer = csv.DictWriter(output_file, fieldnames=file_stream_reader.fieldnames)
-                dictionary_writer.writeheader()
-                open_files_references[nameoffile] = output_file, dictionary_writer
-            # Always write the row
-            open_files_references[nameoffile][1].writerow(row)
-        # Close all the files
-        for output_file, _ in open_files_references.values():
-            output_file.close()
+                # Open a new file and write the header
+                if name_of_file not in open_files_references:
+                    print (cr.CURATED_LOCAL_PATH + '{}.csv'.format(name_of_file))
+                    output_file = open(cr.CURATED_LOCAL_PATH + '{}.csv'.format(name_of_file), 'w', encoding='utf-8', newline='')
+                    dictionary_writer = csv.DictWriter(output_file, fieldnames=file_stream_reader.fieldnames)
+                    dictionary_writer.writeheader()
+                    open_files_references[name_of_file] = output_file, dictionary_writer
+                # Always write the row
+                open_files_references[name_of_file][1].writerow(row)
+            # Close all the files
+            for output_file, _ in open_files_references.values():
+                output_file.close()
