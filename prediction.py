@@ -17,6 +17,8 @@ from sklearn import utils
 from sklearn.datasets import make_blobs
 from sklearn.ensemble import IsolationForest
 from sklearn.linear_model import LinearRegression
+import numpy as np
+import seaborn as sns
 
 
 class ImmothepPrediction:
@@ -224,7 +226,19 @@ class ImmothepPrediction:
         return regr
 
 
-    def isolationforest (data):
-        model = isolationforest(contamination=0.05)
-        model.fit(data)
-        plt.scatter(X[:,0],X[:,1], c = model.predict(X))
+    def isolationforest (self, datas):
+        
+        df1 = datas
+
+        model = IsolationForest(n_estimators = 100, max_samples = 'auto', contamination = 'auto', max_features = 1)
+        model.fit(df1[['Valeur fonciere']])
+
+
+        df1['scores'] = model.decision_function(df1[['Valeur fonciere']])
+        df1['anomaly'] = model.predict(df1[['Valeur fonciere']])
+
+
+        anomaly=df1.loc[df1['anomaly'] == -1]
+        anomaly_index = list(anomaly.index)
+
+        return anomaly
