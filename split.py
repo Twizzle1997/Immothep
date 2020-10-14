@@ -4,15 +4,17 @@ import os
 
 class Splitter:
 
-    def split_datas(self, nomfichier, column):
+    def split_datas(self, nomfichier, columnwanted, dirname):
         
         '''
         Break raw data into many files
         '''
+        
+
 
         filename = nomfichier
 
-        os.makedirs(cr.PATH, exist_ok=True)
+        os.makedirs(cr.CURATED_LOCAL_PATH + dirname + os.sep, exist_ok=True)
 
         csv.field_size_limit(10000000)
 
@@ -21,12 +23,12 @@ class Splitter:
             open_files_references = {}
 
             for row in file_stream_reader:
-                name_of_file = row[column]
+                name_of_file = row[columnwanted]
 
                 # Open a new file and write the header
                 if name_of_file not in open_files_references:
-                    print (cr.CURATED_LOCAL_PATH + '{}.csv'.format(name_of_file))
-                    output_file = open(cr.CURATED_LOCAL_PATH + '{}.csv'.format(name_of_file), 'w', encoding='utf-8', newline='')
+                    # print (cr.CURATED_LOCAL_PATH + dirname + os.sep() + '{}.csv'.format(name_of_file))
+                    output_file = open(cr.CURATED_LOCAL_PATH + dirname + os.sep + '{}.csv'.format(name_of_file[:-5]), 'w', encoding='utf-8', newline='')
                     dictionary_writer = csv.DictWriter(output_file, fieldnames=file_stream_reader.fieldnames)
                     dictionary_writer.writeheader()
                     open_files_references[name_of_file] = output_file, dictionary_writer
