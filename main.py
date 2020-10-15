@@ -1,26 +1,26 @@
 from fastapi import FastAPI
-import requests
+from prediction import ImmothepPrediction
+import json
+import numpy as np
+
+predictor = ImmothepPrediction()
 
 app = FastAPI()
-
-# metre_carre = 740
-# nb_pieces = 4
-# terrain = 1000
-# code_postal = 63000
-
-# estimate = 'la fonction qui va faire l\'estimation'
-# request={"metre_carre" : metre_carre, "nb_pieces" : nb_pieces, "terrain" : terrain, "code_postal" : code_postal}
 
 @app.get("/")
 def welcome_message():
     return {"welcome_message": "World"}
 
-@app.get("api/estimate/")
-def estimate(metre_carre: float, nb_pieces: float, terrain: float, code_postal: float):
-    return {"estimate": estimate + nb_pieces}
+@app.get("/api/estimate")
+def estimate(metre_carre: float, nb_pieces: int, terrain: float, code_postal: int):
+    model_appart = predictor.trainLinearLeRetourAPIAppart(code_postal)
+    model_maison = predictor.trainLinearLeRetourAPIMaison(code_postal)
 
-    # uvicorn main:app --host 0.0.0.0 --port 5003
+    estimation_appart = predictor.predictionLinearAPI(nb_pieces, metre_carre, terrain, model_appart)
+    estimation_appart = np.around(estimation_appart.item(), decimals=2)
+    estimation_appart = str(estimation_appart)
 
-# url = "http://localhost:5003/api/estimate/"
-# response = requests.get(url, params = request)
-# print(response.json())
+    estimation_maison = predictor.predictionLinearAPI(nb_pieces, metre_carre, terrain, model_maison)
+    estimation_maison = np.around(estimation_maison.item(), decimals=2)
+    estimation_maison = str(estimation_maison)
+    return {"estimate_appartment": estimation_appart + " €", "estimate_house": estimation_maison + " €"}
