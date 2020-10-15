@@ -32,14 +32,11 @@ valeurs2019 = valeurs2019.dropna(subset = ['Surface terrain'])
 maisons2019=valeurs2019[['Code postal', 'Nombre pieces principales', 'Surface terrain', 'Surface reelle bati', 'Valeur fonciere']][valeurs2019['Type local'].str.contains("Maison", regex=True)].reset_index(drop=True)
 
 appart2019=valeurs2019[['Code postal', 'Nombre pieces principales', 'Surface terrain', 'Surface reelle bati', 'Valeur fonciere']][valeurs2019['Type local'].str.contains("Appartement", regex=True)][valeurs2019['Surface reelle bati']>9].reset_index(drop=True)
-
-maisons2019.to_csv(cr.CURATED_LOCAL_PATH + 'filteredmaisons2019.csv', index=False, sep="|")
-appart2019.to_csv(cr.CURATED_LOCAL_PATH + 'filteredappart2019.csv', index=False, sep="|")
 ```
 ### Export des dataframes
 ```python
-maisons2019 = pd.read_csv(cr.CURATED_LOCAL_PATH + 'filteredmaisons2019.csv', sep="|")
-appart2019 = pd.read_csv(cr.CURATED_LOCAL_PATH + 'filteredappart2019.csv', sep="|")
+maisons2019.to_csv(cr.CURATED_LOCAL_PATH + 'filteredmaisons2019.csv', index=False, sep="|")
+appart2019.to_csv(cr.CURATED_LOCAL_PATH + 'filteredappart2019.csv', index=False, sep="|")
 ``` 
 
 ### Split du dataset pour créer les jeux de données utilisés dans les entraînements de prédiction
