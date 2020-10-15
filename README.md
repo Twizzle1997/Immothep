@@ -5,7 +5,7 @@ Création du brief Immothep
 ```credentials.py``` : paramètres de routes  
 ```prediction.py``` : Méthodes de prédictions et traitement des données  
 ```main.py``` : Installation et routage de l'API   
-```split.py``` : Méthodes de split des données
+```split.py``` : Méthodes de split des données  
 ```notebook.ipynb``` : Main, notebook du projet
 
 
