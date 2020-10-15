@@ -60,3 +60,10 @@ splitter.split_datas('filteredappart2019.csv', 'Code postal', 'CPAppart')
 
 ### URL de l'API
 ```http://127.0.0.1:5003/api/estimate```
+
+### Exemple d'utilisation
+```request={"metre_carre" : metre_carre, "nb_pieces" : nb_pieces, "terrain" : terrain, "code_postal" : code_postal}
+
+url = "http://127.0.0.1:5003/api/estimate"
+response = requests.get(url, params = request).json()
+print(response)```
