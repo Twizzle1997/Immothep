@@ -1,6 +1,7 @@
 # Immothep
 Création du brief Immothep
 
+## Mise en place du projet
 ### Filtrage du dataset
 ```python
 valeurs2019 = pd.read_csv(cr.PATH+'2019.txt', sep='|', usecols=['Nature mutation', 'Code postal','Nombre pieces principales', 'Surface terrain', 'Surface reelle bati', 'Valeur fonciere', 'Type local', 'Nombre de lots'], encoding='utf-8')
@@ -43,12 +44,12 @@ splitter.split_datas('filteredappart2019.csv', 'Code postal', 'CPAppart')
 
 ## Utilisation de l'API
 ### Lancement du serveur port 5003
-Utilisation de la commande ```uvicorn main:app --port 5003``` dans le terminal
+```uvicorn main:app --port 5003```
 
 ### Paramètres :
-```metre_carre``` Surface bâtie du bien immobilier 
-```nb_pieces``` Nombre de pièces
-```terrain``` Surface en m² du terrain
+```metre_carre``` Surface bâtie du bien immobilier  
+```nb_pieces``` Nombre de pièces  
+```terrain``` Surface en m² du terrain  
 ```code_postal``` Code postal...
 
 ### URL de l'API
