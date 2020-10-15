@@ -2,9 +2,15 @@
 Création du brief Immothep
 
 ## Mise en place du projet
+### Paramètres 
+Credentials.py
+```PATH ``` Route vers le dossier datas et le jeu de données téléchargé  
+```CURATED_LOCAL_PATH``` Route vers les fichiers créés
+```DATASET_NAME``` Nom du jeu de données téléchargé
+
 ### Filtrage du dataset
 ```python
-valeurs2019 = pd.read_csv(cr.PATH+'2019.txt', sep='|', usecols=['Nature mutation', 'Code postal','Nombre pieces principales', 'Surface terrain', 'Surface reelle bati', 'Valeur fonciere', 'Type local', 'Nombre de lots'], encoding='utf-8')
+valeurs2019 = pd.read_csv(cr.PATH + DATASET_NAME, sep='|', usecols=['Nature mutation', 'Code postal','Nombre pieces principales', 'Surface terrain', 'Surface reelle bati', 'Valeur fonciere', 'Type local', 'Nombre de lots'], encoding='utf-8')
 
 valeurs2019 = valeurs2019.dropna(subset = ['Type local', 'Nombre de lots', 'Nombre pieces principales', 'Nature mutation', 'Surface reelle bati'])
 
