@@ -3,7 +3,7 @@ Création du brief Immothep
 
 ## Mise en place du projet
 ### Paramètres 
-Credentials.py
+Credentials.py :  
 ```PATH ``` Route vers le dossier datas et le jeu de données téléchargé  
 ```CURATED_LOCAL_PATH``` Route vers les fichiers créés  
 ```DATASET_NAME``` Nom du jeu de données téléchargé  
