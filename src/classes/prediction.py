@@ -1,8 +1,6 @@
 import pandas as pd
 
 import sklearn
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
@@ -10,12 +8,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import matplotlib.pyplot as plt
 from sklearn import utils
-from sklearn.datasets import make_blobs
 from sklearn.ensemble import IsolationForest
 from sklearn.linear_model import LinearRegression
 import numpy as np
 import seaborn as sns
-from credentials import Credentials as cr
+from src.classes.credentials import Credentials as cr
 
 class ImmothepPrediction:
 
@@ -26,7 +23,7 @@ class ImmothepPrediction:
         x = global_dataset[['Surface reelle bati', 'Nombre pieces principales', 'Surface terrain']]
         y = global_dataset[['Valeur fonciere']]
 
-        x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.70, random_state=0)
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.70, random_state=0)
 
         # Create linear regression object
         regr = LinearRegression()

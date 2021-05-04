@@ -1,5 +1,5 @@
 import csv
-from credentials import Credentials as cr
+from src.classes.credentials import Credentials as cr
 import os
 
 class Splitter:
