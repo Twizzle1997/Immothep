@@ -18,11 +18,7 @@ Credentials.py :
 
 ### Filtrage du dataset
 ```python
-<<<<<<< HEAD
-valeurs2019 = pd.read_csv(cr.PATH + '2019.txt', sep='|', usecols=['Nature mutation', 'Code postal','Nombre pieces principales', 'Surface terrain', 'Surface reelle bati', 'Valeur fonciere', 'Type local', 'Nombre de lots'], encoding='utf-8')
-=======
 valeurs2019 = pd.read_csv(cr.PATH + cr.DATASET_NAME, sep='|', usecols=['Nature mutation', 'Code postal','Nombre pieces principales', 'Surface terrain', 'Surface reelle bati', 'Valeur fonciere', 'Type local', 'Nombre de lots'], encoding='utf-8')
->>>>>>> 608b5955528774e47d52fffe3194bc79fb4baf5f
 
 valeurs2019 = valeurs2019.dropna(subset = ['Type local', 'Nombre de lots', 'Nombre pieces principales', 'Nature mutation', 'Surface reelle bati'])
 
