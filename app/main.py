@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-from prediction import ImmothepPrediction
-import json
+from ..src.classes.prediction import ImmothepPrediction
 import numpy as np
 
 predictor = ImmothepPrediction()
