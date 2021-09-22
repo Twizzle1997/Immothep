@@ -9,8 +9,6 @@ class Splitter:
         '''
         Break raw data into many files
         '''
-        
-
 
         filename = nomfichier
 
