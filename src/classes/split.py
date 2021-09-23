@@ -23,8 +23,7 @@ class Splitter:
 
                 # Open a new file and write the header
                 if name_of_file not in open_files_references:
-                    # print (cr.CURATED_LOCAL_PATH + dirname + os.sep() + '{}.csv'.format(name_of_file))
-                    output_file = open(cr.CURATED_LOCAL_PATH + dirname + os.sep + '{}.csv'.format(name_of_file[:-5]), 'w', encoding='utf-8', newline='')
+                    output_file = open(cr.CURATED_LOCAL_PATH + dirname + os.sep + '{}.csv'.format(name_of_file[:-5]), 'w', encoding='utf-8')
                     dictionary_writer = csv.DictWriter(output_file, fieldnames=file_stream_reader.fieldnames, delimiter='|')
                     dictionary_writer.writeheader()
                     open_files_references[name_of_file] = output_file, dictionary_writer
