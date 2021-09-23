@@ -1,5 +1,5 @@
 import pandas as pd
-
+import re
 import sklearn
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
@@ -12,7 +12,7 @@ from sklearn.ensemble import IsolationForest
 from sklearn.linear_model import LinearRegression
 import numpy as np
 import seaborn as sns
-from src.classes.credentials import Credentials as cr
+from classes.credentials import Credentials as cr
 
 class ImmothepPrediction:
 

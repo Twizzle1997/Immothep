@@ -1,5 +1,5 @@
 import csv
-from src.classes.credentials import Credentials as cr
+from classes.credentials import Credentials as cr
 import os
 
 class Splitter:
@@ -10,14 +10,13 @@ class Splitter:
         Break raw data into many files
         '''
 
-        filename = nomfichier
 
         os.makedirs(cr.CURATED_LOCAL_PATH + dirname + os.sep, exist_ok=True)
 
         csv.field_size_limit(10000000)
 
-        with open(cr.CURATED_LOCAL_PATH + filename, encoding='utf-8') as file_stream:
-            file_stream_reader = csv.DictReader(file_stream, delimiter='|')
+        with open(cr.CURATED_LOCAL_PATH + nomfichier, encoding='utf-8') as file_stream:
+            file_stream_reader = csv.DictReader(file_stream, delimiter=',')
             open_files_references = {}
 
             for row in file_stream_reader:

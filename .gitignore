@@ -32,4 +32,4 @@ env.bak/
 venv.bak/
 
 #DATA
-src/data
+data/
