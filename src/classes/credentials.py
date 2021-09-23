@@ -1,3 +1,3 @@
 class Credentials:
-    PATH = '../src/data/'
+    PATH = '../data/'
     CURATED_LOCAL_PATH = PATH+'CURATED/'
