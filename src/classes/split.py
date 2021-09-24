@@ -4,7 +4,7 @@ import os
 
 class Splitter:
 
-    def split_datas(self, filename, columnwanted, dirname):
+    def split_datas(self, filename, columnwanted, dirname, sep):
         
         '''
         Break raw data into many files
@@ -23,8 +23,8 @@ class Splitter:
 
                 # Open a new file and write the header
                 if name_of_file not in open_files_references:
-                    output_file = open(cr.CURATED_LOCAL_PATH + dirname + os.sep + '{}.csv'.format(name_of_file[:-5]), 'w', encoding='utf-8')
-                    dictionary_writer = csv.DictWriter(output_file, fieldnames=file_stream_reader.fieldnames, delimiter='|')
+                    output_file = open(cr.CURATED_LOCAL_PATH + dirname + os.sep + '{}.csv'.format(name_of_file), 'w', newline="", encoding='utf-8')
+                    dictionary_writer = csv.DictWriter(output_file, fieldnames=file_stream_reader.fieldnames, delimiter=sep)
                     dictionary_writer.writeheader()
                     open_files_references[name_of_file] = output_file, dictionary_writer
                 # Always write the row
